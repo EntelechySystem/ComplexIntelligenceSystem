@@ -1,16 +1,47 @@
 cmake_minimum_required(VERSION 3.22)
 project(EntelechySystem)
 
-cmake_minimum_required(VERSION 3.22)
-
 set(CMAKE_CXX_STANDARD 20)
 
-include_directories("/usr/local/include/eigen3")
-include_directories("/Applications/Julia-1.7.app/Contents/Resources/julia/include/julia")
+
+#if(EXISTS ${CMAKE_BINARY_DIR}/conanbuildinfo.cmake)
+#    include(${CMAKE_BINARY_DIR}/conanbuildinfo.cmake)
+#    conan_basic_setup()
+#else()
+#    message(WARNING "The file conanbuildinfo.cmake doesn't exist, you have to run conan install first")
+#endif()
+
+
+#set(BOOST_ROOT "/usr/local/include/boost")
+
+#让Clion自动寻找boost
+find_package(Boost 1.79.0 COMPONENTS system filesystem REQUIRED)
+include_directories(${Boost_INCLUDE_DIRS})
+
+#include_directories("/usr/local/include/eigen3")
+#include_directories("/usr/local/include/boost")
+#include_directories("/Applications/Julia-1.7.app/Contents/Resources/julia/include/julia")
+
+## 手动配置搜索路径
+
+#添加头文件搜索路径
+include_directories(/usr/local/include)
+
+#添加库文件搜索路径
+link_directories(/usr/local/lib)
+
+#用于将当前目录下的所有源文件的名字保存在变量 DIR_SRCS 中
+aux_source_directory(. DIR_SRCS)
+
+
+#在这里根据名字boost_thread去寻找libboost_thread.a文件
+#target_link_libraries(demo boost_thread boost_system)
+
 
 add_executable(
         EntelechySystem
-        src/main.cpp
+        ${DIR_SRCS}
+        Scripts/main.cpp
         src
         src/Core
         src/Core/Tasks
@@ -34,18 +65,26 @@ add_executable(
         src/Core/Lingo/Lingo.h
         src/Core/Storage.cpp
         src/Core/Storage.h
+        src/Core/Machine/NeedsMachine.cpp
+        src/Core/Machine/NeedsMachine.h
+        src/Core/Unit/BaseMachine.cpp
+        src/Core/Unit/BaseMachine.h
+        src/Core/Object/Object.cpp
+        src/Core/Object/Object.h
+        src/Core/Unit/SenderUnit.cpp
+        src/Core/Unit/SenderUnit.h
+        src/Core/Unit/ReceiverUnit.cpp
+        src/Core/Unit/ReceiverUnit.h
+        src/Core/Agent/Agent.cpp
+        src/Core/Agent/Agent.h
+        src/Core/Unit/ReadUnit.cpp
+        src/Core/Unit/ReadUnit.h
+        src/Core/Unit/WriteUnit.cpp
+        src/Core/Unit/WriteUnit.h
+        src/Core/Unit/AddressUnit.cpp
+        src/Core/Unit/AddressUnit.h
+        src/Core/Unit/ContentUnit.cpp
+        src/Core/Unit/ContentUnit.h
+        src/Core/Content/Content.cpp src/Core/Content/Content.h src/Core/Machine/MachineCollection.h)
 
-)
-
-#project(ElementalCognitionSystem)
-#
-#set(CMAKE_CXX_STANDARD 20)
-#
-#include_directories("/usr/local/include/eigen3")
-#include_directories("/Applications/Julia-1.7.app/Contents/Resources/julia/include/julia")
-#
-#add_executable(ElementalCognitionSystem main.cpp src/Unit/BaseUnit.cpp src/Unit/BaseUnit.h src/Unit/GateUnit.cpp src/Unit/GateUnit.h src/Unit/CanvasUnit.cpp src/Unit/CanvasUnit.h src/Tasks/TaskManager.cpp src/Tasks/TaskManager.h src/Tasks/BaseTask.h)
-#
-#
-##add_executable(rundraft rundraft.cpp)
 
