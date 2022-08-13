@@ -9,7 +9,6 @@ from PyEntelechySystem.Core.Base import BaseObject
 
 
 
-
 class BaseFunction(BaseObject):
 
     pass

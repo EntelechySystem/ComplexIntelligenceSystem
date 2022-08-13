@@ -6,3 +6,5 @@
 """
 
 from PyEntelechySystem.Core.Base import *
+from PyEntelechySystem.Core.Content.Content import *
+from PyEntelechySystem.Core.Function import *
