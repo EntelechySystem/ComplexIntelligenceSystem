@@ -1,7 +1,7 @@
 import time
 
-from PyEntelechySystem.Core.Unit.ReadUnit import ReadUnit
-from PyEntelechySystem.Core.Content import Content
+from PyEntelechySystem.Core.Unit import *
+from PyEntelechySystem.Core.Content.Content import Content
 
 if __name__ == "__main__":
 
@@ -17,9 +17,9 @@ if __name__ == "__main__":
 
     ## TODO 初始化模型 ==========
     read_unit = ReadUnit()
-    # content_2=Content()
+    content = Content()
 
-    print('type_name: ',read_unit.type_name)
+    print('type_name: ', read_unit.type_name)
     print('id: ', read_unit.uid)
     print('id_string: ', read_unit.uid_string)
     print('content type_name: ', read_unit.content.type_name)
