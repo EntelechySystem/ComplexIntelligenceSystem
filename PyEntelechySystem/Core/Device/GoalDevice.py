@@ -5,5 +5,10 @@
 @Desc   : 目标器
 """
 
+from PyEntelechySystem.Core.Device import *
+# from PyEntelechySystem.Core.Content import Content
+
+
 class GoalDevice(BaseDevice):
-    pass
+    content:Content
+    pass  # class
