@@ -25,12 +25,12 @@ class Content(BaseContent):
     #     # self.type_name: str = 'content type'
     #     # self.head: str = 'content head'
     #     # self.body: str = 'content body'
+    #     super().__init__()
     #     self.uid: uuid = uuid.uuid4()
     #     self.uid_string = self.uid.__str__()
     #     self.type_name: str = kwargs.get('type_name')
     #     self.head: str = kwargs.get('head')
     #     self.body: str = kwargs.get('body')
-    #     super().__init__()
     #     pass
 
 

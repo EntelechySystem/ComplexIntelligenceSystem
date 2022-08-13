@@ -7,7 +7,7 @@
 
 from PyEntelechySystem import dataclass, uuid
 
-from PyEntelechySystem.Core.Base.BaseObject import BaseObject
+from PyEntelechySystem.Core.Base import BaseObject
 
 
 @dataclass()

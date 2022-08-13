@@ -6,8 +6,9 @@
 """
 
 from PyEntelechySystem.Core.Base import *
-from .Units import *
-from .ReadUnit import ReadUnit
-from .WriteUnit import WriteUnit
-from .ReceiverUnit import ReceiverUnit
-from .SenderUnit import SenderUnit
+from PyEntelechySystem.Core.Unit.Units import *
+# from .Units import ReadUnit, WriteUnit, ReceiverUnit, SenderUnit, ConnectUnit, CanvasUnit
+# from .ReadUnit import ReadUnit
+# from .WriteUnit import WriteUnit
+# from .ReceiverUnit import ReceiverUnit
+# from .SenderUnit import SenderUnit
