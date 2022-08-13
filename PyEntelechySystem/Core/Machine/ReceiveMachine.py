@@ -1,7 +1,7 @@
 """
-@File   : __init__.py.py
+@File   : ReceiveMachine.py
 @Author : Ethan Lin
-@Date   : 2022/07/30
+@Date   : 2022/08/13
 @Desc   : 
 """
 
