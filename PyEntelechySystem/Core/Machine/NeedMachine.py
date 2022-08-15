@@ -6,12 +6,12 @@
 """
 
 from PyEntelechySystem.Core.Machine import *
-from PyEntelechySystem.Core.Unit.Units import *
-from PyEntelechySystem.Core.Content.Content import Content
+# from PyEntelechySystem.Core.Unit.Units import *
+# from PyEntelechySystem.Core.Content.Content import Content
 
 
 @dataclass
-class NeedMachine:
+class NeedMachine(BaseMachine):
     """
     需求机
     """
