@@ -1,1 +1,1 @@
-# EntelechySystem
+# Complex Intelligence System

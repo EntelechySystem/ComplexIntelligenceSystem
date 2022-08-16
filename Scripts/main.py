@@ -1,7 +1,7 @@
 import time
 
-from PyEntelechySystem.Core.Unit import *
-from PyEntelechySystem.Core.Content.Content import Content
+from PyComplexIntelligenceSystem.Core.Unit import *
+from PyComplexIntelligenceSystem.Core.Content.Content import Content
 
 if __name__ == "__main__":
 
