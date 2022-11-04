@@ -6,10 +6,10 @@
 """
 
 from PyComplexIntelligenceSystem import dataclass
-from PyComplexIntelligenceSystem.Core.Base import BaseUnit
+from PyComplexIntelligenceSystem.Core.Base import BaseUnit, BaseMachine
 
 
 @dataclass()
-class OperateMachine:
+class OperateMachine(BaseMachine):
     # TODO
     pass
