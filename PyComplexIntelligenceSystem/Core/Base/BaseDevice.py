@@ -8,4 +8,5 @@ from PyComplexIntelligenceSystem.Core.Base import BaseObject
 
 
 class BaseDevice(BaseObject):
+    # TODO 基础过程器
     pass  # class

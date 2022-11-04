@@ -6,7 +6,6 @@
 """
 
 from PyComplexIntelligenceSystem.Core.Device import *
-# from PyComplexIntelligenceSystem.Core.Content import Content
 
 
 class GoalDevice(BaseDevice):
