@@ -1,11 +1,15 @@
-﻿
+
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.4.33110.190
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ComplexIntelligenceSystem_cs", "ComplexIntelligenceSystem_cs\ComplexIntelligenceSystem_cs.csproj", "{6E474942-F153-4403-8715-A967005172BD}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CIS_TestProject", "CIS_TestProject\CIS_TestProject.csproj", "{81B063F4-2A64-4E91-A5E9-EFFED3DF8B8F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ComplexIntelligenceSystem_MauiBlazorApp", "ComplexIntelligenceSystem_MauiBlazorApp\ComplexIntelligenceSystem_MauiBlazorApp.csproj", "{BBA5B20F-BD5C-45D2-96ED-15C0B0B0123D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CIS_MauiBlazorApp", "CIS_MauiBlazorApp\CIS_MauiBlazorApp.csproj", "{1274880C-AA81-4C4E-998E-71A841E96EDD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CIS_MauiApp", "CIS_MauiApp\CIS_MauiApp.csproj", "{44778CC6-27EB-4F2A-8B2D-7A9AFE98D792}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ComplexIntelligenceSystem_cs", "ComplexIntelligenceSystem_cs\ComplexIntelligenceSystem_cs.csproj", "{25343CD3-524F-4F4D-8141-DF7EBCD5BBA3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -13,16 +17,26 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{6E474942-F153-4403-8715-A967005172BD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{6E474942-F153-4403-8715-A967005172BD}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{6E474942-F153-4403-8715-A967005172BD}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{6E474942-F153-4403-8715-A967005172BD}.Release|Any CPU.Build.0 = Release|Any CPU
-		{BBA5B20F-BD5C-45D2-96ED-15C0B0B0123D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{BBA5B20F-BD5C-45D2-96ED-15C0B0B0123D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{BBA5B20F-BD5C-45D2-96ED-15C0B0B0123D}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
-		{BBA5B20F-BD5C-45D2-96ED-15C0B0B0123D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{BBA5B20F-BD5C-45D2-96ED-15C0B0B0123D}.Release|Any CPU.Build.0 = Release|Any CPU
-		{BBA5B20F-BD5C-45D2-96ED-15C0B0B0123D}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{D67E016E-C4B1-491A-88A9-5D09ECE1B3D1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D67E016E-C4B1-491A-88A9-5D09ECE1B3D1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D67E016E-C4B1-491A-88A9-5D09ECE1B3D1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D67E016E-C4B1-491A-88A9-5D09ECE1B3D1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{81B063F4-2A64-4E91-A5E9-EFFED3DF8B8F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{81B063F4-2A64-4E91-A5E9-EFFED3DF8B8F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{81B063F4-2A64-4E91-A5E9-EFFED3DF8B8F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{81B063F4-2A64-4E91-A5E9-EFFED3DF8B8F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1274880C-AA81-4C4E-998E-71A841E96EDD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1274880C-AA81-4C4E-998E-71A841E96EDD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1274880C-AA81-4C4E-998E-71A841E96EDD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1274880C-AA81-4C4E-998E-71A841E96EDD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{44778CC6-27EB-4F2A-8B2D-7A9AFE98D792}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{44778CC6-27EB-4F2A-8B2D-7A9AFE98D792}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{44778CC6-27EB-4F2A-8B2D-7A9AFE98D792}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{44778CC6-27EB-4F2A-8B2D-7A9AFE98D792}.Release|Any CPU.Build.0 = Release|Any CPU
+		{25343CD3-524F-4F4D-8141-DF7EBCD5BBA3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{25343CD3-524F-4F4D-8141-DF7EBCD5BBA3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{25343CD3-524F-4F4D-8141-DF7EBCD5BBA3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{25343CD3-524F-4F4D-8141-DF7EBCD5BBA3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
