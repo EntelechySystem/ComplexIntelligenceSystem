@@ -1391,7 +1391,7 @@ FodyWeavers.xsd
 # Visual Studio cache directory
 
 # Plastic SCM
-*/*.plastic/
+# */*.plastic/
 
 # Gradle cache directory
 *.gradle/
