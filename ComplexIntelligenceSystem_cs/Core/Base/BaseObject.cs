@@ -1,6 +1,4 @@
-namespace CIS.Base;
-
-using System;
+namespace CIS.Core.Base;
 
 public class BaseObject
 {

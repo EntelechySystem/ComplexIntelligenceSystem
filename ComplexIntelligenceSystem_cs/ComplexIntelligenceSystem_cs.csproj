@@ -18,4 +18,8 @@
 		<RootNamespace>CIS</RootNamespace>
 	</PropertyGroup>
 
+	<ItemGroup>
+	  <Folder Include="Core\Models" />
+	</ItemGroup>
+
 </Project>

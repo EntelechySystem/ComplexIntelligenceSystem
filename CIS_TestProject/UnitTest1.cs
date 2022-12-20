@@ -1,4 +1,6 @@
-﻿namespace CIS_TestProject;
+﻿using CIS.Core.Machine;
+
+namespace CIS_TestProject;
 using CIS;
 
 [TestClass]
