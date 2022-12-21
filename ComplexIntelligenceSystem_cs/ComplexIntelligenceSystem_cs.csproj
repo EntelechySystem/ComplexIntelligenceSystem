@@ -22,4 +22,11 @@
 	  <Folder Include="Core\Models" />
 	</ItemGroup>
 
+	<ItemGroup>
+	  <None Remove="Newtonsoft.Json" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <PackageReference Include="System.Text.Json" Version="7.0.1" />
+	</ItemGroup>
 </Project>
