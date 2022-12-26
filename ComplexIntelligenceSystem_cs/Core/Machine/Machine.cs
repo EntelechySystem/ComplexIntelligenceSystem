@@ -1,6 +1,8 @@
-﻿namespace CIS.Core.Machine;
+﻿using EntelechySystem.ComplexIntelligenceSystem.BaseClass;
 
-public class Machine
+namespace EntelechySystem.ComplexIntelligenceSystem;
+
+public class Machine : BaseMachine
 {
     public string print()
     {

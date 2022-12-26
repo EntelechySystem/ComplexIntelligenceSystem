@@ -1,0 +1,17 @@
+using System.Collections;
+
+namespace EntelechySystem.ComplexIntelligenceSystem;
+
+class Device : BaseThing
+{
+    /// <summary>
+    /// 器
+    /// </summary>
+    private ArrayList connections = new ArrayList();
+
+    public Device()
+    {
+        connections.Add(this);
+    }
+    
+}
