@@ -1,4 +1,4 @@
-*/.sync.ffs_db
+*.ffs_db
 CIS_unity/Assets/FlockBox/*
 
 
@@ -1502,5 +1502,6 @@ xcuserdata
 
 
 # End of https://www.toptal.com/developers/gitignore/api/macos,windows,linux,python,julia,r,matlab,visualstudiocode,visualstudio,pycharm,obsidian,latex,lyx,sublimetext,octave,spark,stata,jupyternotebooks
+
 
 
