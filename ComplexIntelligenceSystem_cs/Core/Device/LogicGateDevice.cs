@@ -1,7 +1,7 @@
 namespace EntelechySystem.ComplexIntelligenceSystem;
 
 /// <summary>
-/// 逻辑门抽象类
+/// 逻辑门抽象类 #TODO 需要适配
 /// </summary>
 public abstract class LogicGateDevice
 {

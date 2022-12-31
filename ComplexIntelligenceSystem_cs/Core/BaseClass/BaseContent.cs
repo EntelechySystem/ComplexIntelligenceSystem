@@ -22,19 +22,4 @@ public abstract class BaseContent : BaseThing
         UidString = Id.ToString();
         Debug.WriteLine(TypeName + ": " + UidString);
     }
-    // public Guid SetUuid()
-    // {
-    //     Id = Guid.NewGuid();
-    //     return Id;
-    // }
-    //
-    // public void SetContentBody(string body)
-    // {
-    //     Body = body;
-    // }
-    //
-    // public void SetContentHead(string head)
-    // {
-    //     Head = head;
-    // }
 }
