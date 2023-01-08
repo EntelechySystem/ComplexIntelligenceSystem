@@ -1,4 +1,0 @@
-repository "CIS_unity@ethansystem@cloud.cn"
-  path "/"
-    br "/main"
-    co "/main"
