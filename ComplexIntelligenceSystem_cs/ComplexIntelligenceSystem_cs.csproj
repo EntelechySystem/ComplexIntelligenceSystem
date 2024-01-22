@@ -15,7 +15,27 @@
 		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</SupportedOSPlatformVersion>
 		<TargetPlatformMinVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</TargetPlatformMinVersion>
 		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'tizen'">6.5</SupportedOSPlatformVersion>
-		<RootNamespace>CIS</RootNamespace>
+		<RootNamespace>EntelechySystem.ComplexIntelligenceSystem</RootNamespace>
+		<AssemblyName>ComplexIntelligenceSystem</AssemblyName>
+		<Company>EntelechySystem</Company>
 	</PropertyGroup>
 
+	<PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+	  <AndroidSupportedAbis />
+	</PropertyGroup>
+
+	<ItemGroup>
+	  <Folder Include="Core\Agents" />
+	  <Folder Include="Core\Aspect" />
+	  <Folder Include="Core\Models" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <None Remove="Newtonsoft.Json" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <PackageReference Include="CUDAfy.NET" Version="1.29.5576.13786" />
+	  <PackageReference Include="System.Text.Json" Version="7.0.1" />
+	</ItemGroup>
 </Project>

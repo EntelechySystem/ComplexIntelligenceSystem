@@ -1,5 +1,7 @@
-﻿namespace CIS_TestProject;
-using CIS;
+﻿using EntelechySystem.ComplexIntelligenceSystem;
+using EntelechySystem.ComplexIntelligenceSystem.Core;
+
+namespace CIS_TestProject;
 
 [TestClass]
 public class UnitTest1
@@ -7,7 +9,7 @@ public class UnitTest1
     [TestMethod]
     public void TestMethod1()
     {
-        Machine machine = new Machine();
-        Assert.AreEqual("这是一个机。", machine.print());
+        Content content = new Content();
+        Assert.AreEqual("这是一个内容。", content);
     }
 }

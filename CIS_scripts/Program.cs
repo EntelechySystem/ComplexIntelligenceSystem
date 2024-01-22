@@ -1,4 +1,5 @@
 ﻿using System;
+using EntelechySystem.ComplexIntelligenceSystem.Core;
 
 namespace CIS_scripts
 {
@@ -6,6 +7,11 @@ namespace CIS_scripts
     {
         static void Main(string[] args)
         {
+            /// 准备阶段：
+            Console.WriteLine(SceneBuilder.BuildContentArray());
+
+            /// 开始程序阶段：
+
             // 设置：总步数
             int totalStep = 1000;
             // 设置阶段步数
