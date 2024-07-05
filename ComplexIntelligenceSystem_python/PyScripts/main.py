@@ -1,7 +1,6 @@
-import time
+import timeit
 
-from PyComplexIntelligenceSystem.Core.Unit import *
-from PyComplexIntelligenceSystem.Core.Content.Content import Content
+from ComplexIntelligenceSystem_python.Core.define_units import define_units
 
 if __name__ == "__main__":
 
@@ -13,7 +12,7 @@ if __name__ == "__main__":
     finish_step = start_step + totol_step
 
     ## 定时开始
-    start_time = time.time()
+    start_time = timeit.default_timer()
 
     ## TODO 初始化模型 ==========
     read_unit = ReadUnit()
@@ -39,6 +38,6 @@ if __name__ == "__main__":
         ## =========================
 
     ## 定时结束
-    finish_time = time.time()
+    finish_time = timeit.default_timer()
 
     print("耗时：", finish_time - start_time)
