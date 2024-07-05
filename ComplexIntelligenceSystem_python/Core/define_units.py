@@ -23,9 +23,9 @@ def define_units(n_units: int = N_UNITS):
         ('uid', np.uint64),  # 单位之 ID
         ('pos_x', np.float64),  # 单位之物理空间之 X 坐标
         ('pos_y', np.float64),  # 单位之物理空间之 Y 坐标
-        ('pos_z', np.float64),  # 单位之物理空间之 Z 坐标
-        ('input_units', np.float32),  # 单位之输入
-        ('output_units', np.float32),  # 单位之输出
+        # ('pos_z', np.float64),  # 单位之物理空间之 Z 坐标 #NOTE 如果需要启用再用
+        ('input_units', 'O'),  # 单位之输入
+        ('output_units', 'O'),  # 单位之输出
         ('units_type', 'S128'),  # 单位之类型
         ('contents_obj', 'O'),  # 单位之内容
         ('containers_obj', 'S128'),  # 单位之容器
