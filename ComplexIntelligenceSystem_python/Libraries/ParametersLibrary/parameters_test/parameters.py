@@ -108,6 +108,18 @@ def main():
             pass  # for
         N_combinations_上三角组合组 += N_combinations_上三角组合组_10 // 2  # #HACK 这个只是一个很粗略的估算，实际的组合数量可能会更少一些。
         pass  # for
+
+    # 估算组合参数数量。BUG 如果存在某一个组合组的参数数量为 0，会导致整个估算的组合参数数量为 0。
+    # 排除某一个组合组的参数数量为 0 的情况。
+    if N_combinations_正交组合组 == 0:
+        N_combinations_正交组合组 = 1
+        pass  # if
+    if N_combinations_一一对应组合组 == 0:
+        N_combinations_一一对应组合组 = 1
+        pass  # if
+    if N_combinations_上三角组合组 == 0:
+        N_combinations_上三角组合组 = 1
+        pass  # if
     N_combinations = N_combinations_正交组合组 * N_combinations_一一对应组合组 * N_combinations_上三角组合组
 
     # 如果组合参数数量超过一千，暂停程序，提示用户确认是否继续。超过一万直接终止程序。
@@ -176,8 +188,11 @@ def main():
     df_combinations_正交组合组 = df_combinations_正交组合组.assign(key=1)
     df_combinations_一一对应组合组 = df_combinations_一一对应组合组.assign(key=1)
     df_combinations_上三角组合组 = df_combinations_上三角组合组.assign(key=1)
-    df_works = pd.merge(df_combinations_正交组合组, df_combinations_一一对应组合组, on='key')
-    df_works = pd.merge(df_works, df_combinations_上三角组合组, on='key')
+    # 初始化一个数据框，用于合并
+    df_works = pd.DataFrame({'key': [1]})
+    df_works = pd.merge(df_works, df_combinations_正交组合组, on='key', how='outer')
+    df_works = pd.merge(df_works, df_combinations_一一对应组合组, on='key', how='outer')
+    df_works = pd.merge(df_works, df_combinations_上三角组合组, on='key', how='outer')
     df_works = df_works.drop('key', axis=1)
 
     df_works['id'] = np.arange(len(df_works), dtype=int) + 1  # 添加 id 列，id 从 1 开始
