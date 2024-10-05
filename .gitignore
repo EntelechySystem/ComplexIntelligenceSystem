@@ -2,6 +2,9 @@
 CIS_unity/Assets/FlockBox/*
 draft/*
 *.pkl
+*.xlsx
+
+
 
 
 # Created by https://www.toptal.com/developers/gitignore/api/macos,windows,linux,python,julia,r,matlab,visualstudiocode,visualstudio,pycharm,obsidian,latex,lyx,sublimetext,octave,spark,stata,jupyternotebooks,rust,rust-analyzer
@@ -1527,6 +1530,7 @@ rust-project.json
 
 
 # End of https://www.toptal.com/developers/gitignore/api/macos,windows,linux,python,julia,r,matlab,visualstudiocode,visualstudio,pycharm,obsidian,latex,lyx,sublimetext,octave,spark,stata,jupyternotebooks,rust,rust-analyzer
+
 
 
 
