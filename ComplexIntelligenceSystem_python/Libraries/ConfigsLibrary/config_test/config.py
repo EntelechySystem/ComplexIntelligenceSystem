@@ -29,7 +29,9 @@ def main():
     with open(Path(folderpath_config, r"config.pkl"), 'wb') as f:
         pickle.dump(config, f)
 
+    print("运行完毕！")
     pass  # function
+
 
 
 if __name__ == '__main__':

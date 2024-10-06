@@ -28,12 +28,12 @@ def main():
     # 去除不启用的行
     df_parameters = df_parameters[df_parameters['是否启用'] == True]
 
-    # 排序，依次按照 '是否启用'、'扫描层级优先级'、'id' 排序
-    df_parameters = df_parameters.sort_values(by=['是否启用', '扫描层级优先级', 'id'], ignore_index=True)
+    # 排序，依次按照 '是否启用'、'扫描层级优先级'、'exp_id' 排序
+    df_parameters = df_parameters.sort_values(by=['是否启用', '扫描层级优先级', 'exp_id'], ignore_index=True)
 
     # 获取启用的行值所有的参数项作为组合参数批处理实验作业数据框之列名
     list_parameters = df_parameters['参数项'].tolist()
-    list_works_columns = ['id', '试验状态', '实验文件夹名'] + list_parameters
+    list_works_columns = ['exp_id', '试验状态', '实验文件夹名'] + list_parameters
 
     # 新建【组合参数批处理实验作业数据框】
     df_works = pd.DataFrame(columns=list_works_columns)
@@ -195,8 +195,8 @@ def main():
     df_works = pd.merge(df_works, df_combinations_上三角组合组, on='key', how='outer')
     df_works = df_works.drop('key', axis=1)
 
-    df_works['id'] = np.arange(len(df_works), dtype=int) + 1  # 添加 id 列，id 从 1 开始
-    df_works = df_works[['id'] + [col for col in df_works.columns if col != 'id']]  # id 列放在第一列
+    df_works['exp_id'] = np.arange(len(df_works), dtype=int) + 1  # 添加 exp_id 列，exp_id 从 1 开始
+    df_works = df_works[['exp_id'] + [col for col in df_works.columns if col != 'exp_id']]  # exp_id 列放在第一列
 
     df_works['works_status'] = '未开始'  # 添加作业状态列 works_states
 
@@ -213,6 +213,8 @@ def main():
     with open(Path(folderpath_parameters, r"parameters_works.pkl"), 'wb') as f:
         pickle.dump(df_works, f)
     print("保存 PKL 文件完成。")
+
+    print("运行完毕！")
 
     pass  # function
 
