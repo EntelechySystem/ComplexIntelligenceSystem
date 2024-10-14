@@ -1,6 +1,6 @@
 import timeit
 
-from ComplexIntelligenceSystem_python.Core.define_units import define_units
+from ComplexIntelligenceSystem_python.Core.define_units import define_neurons_units
 
 if __name__ == "__main__":
 
