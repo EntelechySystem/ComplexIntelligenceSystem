@@ -5,6 +5,7 @@
 import torch
 import numpy as np
 from numba import njit
+from ComplexIntelligenceSystem_python.Core.tools import Tools
 
 # @njit
 # def define_neurons_units(n_units: int = N_UNITS):
@@ -98,47 +99,75 @@ units_dtype = np.dtype([
 #
 #     return op_units_Uid, op_units_UnitsType, op_units_InputUnits
 #     pass  # function
+
+class DefineUnits:
+
+    @classmethod
+    def define_units(cls, n_units: int):
+        """
+        定义运作单元（机器件）之结构化数组的数据类型
+
+        Args:
+            n_units (int): 件数量
+
+        Returns:
+
+        """
+        # units = np.zeros(n_units, dtype=op_units_dtype)  # 创建一个结构化数组
+        # units['uid'] = np.arange(n_units)  # 初始化 uid
+
+        op_units_Uid = torch.arange(n_units, dtype=torch.int64)
+        op_units_UnitsType = torch.from_numpy(np.array(Tools.encode_string_array('hello world')))
+        # op_units_InputUnits = np.full(n_units, ' ', np.dtype('S128'))
+
+        return op_units_Uid, op_units_UnitsType
+        pass  # function
+
+
+    pass  # class
+
+
+# class Units:
+#     def __init__(self, uid, pos_x, pos_y, input_units, output_units, units_type, contents_obj, containers_obj, nodes_obj):
+#         self.uid = uid
+#         self.pos_x = pos_x
+#         self.pos_y = pos_y
+#         self.input_units = input_units
+#         self.output_units = output_units
+#         self.units_type = units_type
+#         self.contents_obj = contents_obj
+#         self.containers_obj = containers_obj
+#         self.nodes_obj = nodes_obj
 #
-
-class Units:
-    def __init__(self, uid, pos_x, pos_y, input_units, output_units, units_type, contents_obj, containers_obj, nodes_obj):
-        self.uid = uid
-        self.pos_x = pos_x
-        self.pos_y = pos_y
-        self.input_units = input_units
-        self.output_units = output_units
-        self.units_type = units_type
-        self.contents_obj = contents_obj
-        self.containers_obj = containers_obj
-        self.nodes_obj = nodes_obj
-
-def define_units(n_units: int):
-
-    """
-    定义运作单元（机器件）之结构化数组的数据类型
-
-    Args:
-        n_units (int): 件数量
-
-    Returns:
-        list: 包含 n_units 个 Unit 对象的列表
-    """
-    units = []
-    for i in range(n_units):
-        unit = Units(
-            uid=torch.tensor(i, dtype=torch.int64),
-            # pos_x=torch.tensor(0.0, dtype=torch.float64),
-            # pos_y=torch.tensor(0.0, dtype=torch.float64),
-            input_units=torch.empty(1, dtype=torch.float32),
-            output_units=torch.empty(1, dtype=torch.float32),
-            units_type=torch.tensor('', dtype=torch.string),
-            contents_obj=torch.tensor('', dtype=torch.string),
-            containers_obj=torch.tensor('', dtype=torch.string),
-            nodes_obj=torch.tensor('', dtype=torch.string)
-        )
-        units.append(unit)
-    return units
-    pass  # function
+# def define_units(n_units: int):
+#
+#     """
+#     定义运作单元（机器件）之结构化数组的数据类型
+#
+#     Args:
+#         n_units (int): 件数量
+#
+#     Returns:
+#         list: 包含 n_units 个 Unit 对象的列表
+#     """
+#     units = []
+#     for i in range(n_units):
+#         unit = Units(
+#             uid=torch.tensor(i, dtype=torch.int64),
+#             # pos_x=torch.tensor(0.0, dtype=torch.float64),
+#             # pos_y=torch.tensor(0.0, dtype=torch.float64),
+#             input_units=torch.empty(1, dtype=torch.float32),
+#             output_units=torch.empty(1, dtype=torch.float32),
+#             units_type=torch.tensor('', dtype=torch.string),
+#             contents_obj=torch.tensor('', dtype=torch.string),
+#             containers_obj=torch.tensor('', dtype=torch.string),
+#             nodes_obj=torch.tensor('', dtype=torch.string)
+#         )
+#         units.append(unit)
+#
+#
+#     return units
+#     pass  # function
 
 # @njit
 def add_unit(units, uid: np.uint64):
