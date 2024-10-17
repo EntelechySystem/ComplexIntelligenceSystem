@@ -3,7 +3,7 @@
 """
 
 # from ComplexIntelligenceSystem_python.Core.define_units import define_neurons_units, define_op_units
-from ComplexIntelligenceSystem_python.Core.define_units import DefineUnits
+from ComplexIntelligenceSystem_python.Core.define_units import NeuronsUnits, OperationUnits
 from ComplexIntelligenceSystem_python.Core.tools import Tools
 import logging
 
@@ -14,13 +14,11 @@ def content_model(para: dict, globals: dict):
     ## 设置项
     # 神经元数量 = globals['神经元数量']
 
-    # ## 定义神经元件
-    # neurons_units = define_neurons_units(globals['神经元件总数量'])
-    #
-    # ## 打印初始化的神经元件
-    # print(neurons_units)
-    # print(neurons_units.dtype)
-    # print(neurons_units.shape)
+    ## 定义神经单元
+    ne_units = NeuronsUnits(globals['神经元总数量'], globals['单个神经元最大连接数'])
+
+    ## 打印初始化的神经元件
+    print(ne_units)
 
     # ## 初始化运作单元
     # units = define_units(globals['运作单元总数量'])
@@ -31,11 +29,19 @@ def content_model(para: dict, globals: dict):
     # # print(units.shape)
 
     ## 初始化运作单元
-    op_units_Uid, op_units_UnitsType = DefineUnits.define_units(globals['运作单元总数量'])
+
+    ### 初始化控制运作单元
+    op_units_Control = OperationUnits(globals['运作单元总数量'], globals['单个运作单元最大连接数'], "control")
+
+    ### 初始化
+
+    ###
+
+    # op_units_Uid, op_units_UidString, op_units_UnitsType = DefineUnits.define_operation_units(globals['运作单元总数量'])
 
     ## 打印初始化的运作单元
-    print(op_units_Uid)
-    print(Tools.decode_string_array(op_units_UnitsType))
+    print(op_units_Control)
+    # print(Tools.decode_string_array(op_units_UnitsType))
     # print(op_units_InputUnits)
 
     # # 初始化运作单元

@@ -1,37 +1,44 @@
 """
 常用工具
 """
-import string
-import random
 import numpy as np
+import uuid
+import base64
 import torch
 
+
 class Tools:
-    @classmethod
-    def generate_unique_identifier(cls):
+    @staticmethod
+    def generate_unique_identifier(length=32):
         """
-        随机生成一个8位的英文大小写字母和阿拉伯数字混合的字符串作为id。
+        随机生成一个指定位数的英文大小写字母、阿拉伯数字、下划线、横杠符共 64 种符号混合的 uuid 字符串。默认长度为 32 位。
 
         注意，区分大小写。
+
+        Args:
+            length (int): 字符串长度。默认值为 8。
 
         Returns:
             str: id字符串
         """
-        while True:
-            # 生成一个随机的字符串
-            new_identifier = ''.join(random.choices(string.ascii_letters + string.digits, k=8))
 
-            return new_identifier
+        return base64.urlsafe_b64encode(uuid.uuid4().bytes).decode('utf-8').rstrip('=')[:length]
         pass  # function
-
-
 
     @classmethod
     def encode_string_array(cls, strings, max_len=128):
+        """
+        将字符串数组编码为一个 tensor，每个字符串转换为 ASCII 数值表示
+
+        Args:
+            strings (List[str]): 字符串数组
+            max_len (int): 每个字符串的最大长度。默认值为 128。如果字符串长度小于 max_len，则用空格填充
+
+        Returns:
+
+        """
         # 创建一个 tensor，存储字符串的 ASCII 数值表示，空位用 ASCII 码 32 (空格) 填充
         encoded_array = np.full(max_len, 32, dtype=np.int32)
-
-
 
         for i, s in enumerate(strings):
             # 将每个字符串的前 max_len 个字符转换为 ASCII 值
@@ -54,6 +61,15 @@ class Tools:
 
     @classmethod
     def decode_string_array(cls, encoded_tensor):
+        """
+        将存储字符串的 tensor 解码为字符串数组
+
+        Args:
+            encoded_tensor (torch.Tensor): 存储字符串的 tensor
+
+        Returns:
+            List[str]: 字符串数组
+        """
         decoded_strings = []
 
         # 遍历 tensor，逐个元素转换回字符串
@@ -73,9 +89,9 @@ if __name__ == '__main__':
     new_identifier = Tools.generate_unique_identifier()
     print(f'\n{new_identifier}')
     # 编码字符串数组
-    encoded_array=Tools.encode_string_array(new_identifier)
+    encoded_array = Tools.encode_string_array(new_identifier)
     print(encoded_array)
     # 解码字符串数组
-    decoded_strings=Tools.decode_string_array(encoded_array)
+    decoded_strings = Tools.decode_string_array(encoded_array)
     print(decoded_strings)
     pass  # function
