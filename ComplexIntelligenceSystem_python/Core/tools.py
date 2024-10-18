@@ -1,6 +1,8 @@
 """
 常用工具
 """
+import logging
+
 import numpy as np
 import uuid
 import base64
@@ -47,9 +49,6 @@ class Tools:
             ascii_values = ord(s[:max_len])
             encoded_array[i] = ascii_values
 
-        # #DEBUG 打印效果
-        print(encoded_array)
-
         # 转换为 PyTorch tensor
         return torch.tensor(encoded_array, dtype=torch.int32)
 
@@ -82,6 +81,25 @@ class Tools:
     # # 示例解码
     # decoded_strings = decode_string_array(encoded_tensor)
     # print(decoded_strings)
+
+    @classmethod
+    def print_units_values(cls, units, is_decode=False):
+        """
+        打印各单位值
+
+        Returns:
+
+        """
+        for field_name, field_value in units.__dict__.items():
+            if is_decode and field_name in ['units_name', 'units_type']:
+                decoded_values = [cls.decode_string_array(v) for v in field_value]
+                logging.info(f'{field_name}:{decoded_values}')
+            else:
+                logging.info(f'{field_name}:{field_value}')
+                pass  # if
+            pass  # for
+
+        pass  # function
 
 
 if __name__ == '__main__':

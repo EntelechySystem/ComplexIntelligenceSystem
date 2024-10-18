@@ -3,7 +3,7 @@
 """
 
 # from ComplexIntelligenceSystem_python.Core.define_units import define_neurons_units, define_op_units
-from ComplexIntelligenceSystem_python.Core.define_units import NeuronsUnits, OperationUnits
+from ComplexIntelligenceSystem_python.Core.define_units import NeuronsUnits, NeuronsUnits_ForHumanRead, OperationUnits
 from ComplexIntelligenceSystem_python.Core.tools import Tools
 from ComplexIntelligenceSystem_python.Core.settings import Settings
 import logging
@@ -20,8 +20,13 @@ def content_model(para: dict, globals: dict):
     ## 定义神经单元
     ne_units = NeuronsUnits(n_ne_units, globals['单个神经元最大连接数'])
 
+    ## 定义用于人类阅读的神经元数据
+    ne_units_hr = NeuronsUnits_ForHumanRead(n_ne_units, globals['单个神经元最大连接数'])
+
     ## 打印初始化的神经元件
-    print(ne_units)
+    logging.info("初始化的神经元")
+    Tools.print_units_values(ne_units)
+    Tools.print_units_values(ne_units_hr)
 
     ## 初始化运作单元
 
@@ -42,10 +47,6 @@ def content_model(para: dict, globals: dict):
 
     ## 打印初始化的运作单元
     logging.info("初始化的控制运作单元")
-    logging.info(op_units_Control)
+    Tools.print_units_values(op_units_Control)
     logging.info("初始化的容器运作单元")
-    logging.info(op_units_Container)
-    # print(Tools.decode_string_array(op_units_UnitsType))
-    # print(op_units_InputUnits)
-
-
+    Tools.print_units_values(op_units_Container)

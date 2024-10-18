@@ -6,7 +6,25 @@ from dataclasses import dataclass
 import torch
 import numpy as np
 from numba import njit
+from sympy.physics.units.systems.si import units
+
 from ComplexIntelligenceSystem_python.Core.tools import Tools
+from ComplexIntelligenceSystem_python.Core.settings import Settings
+
+
+class InitUnits():
+    """
+    定义单元众
+    """
+
+    @classmethod
+    def __init__(cls, init_dict, n_units: int, max_num_links: int, unit_type: int):
+        guid = 0
+        while True:
+            pass  # while
+        pass  # function
+
+    pass  # class
 
 
 @dataclass
@@ -30,8 +48,6 @@ class NeuronsUnits():
 
     def __init__(self, n_units: int, max_num_links: int):
         self.uid = torch.arange(n_units, dtype=torch.int64)
-        self.units_name = torch.from_numpy(np.array([Tools.encode_string_array(Tools.generate_unique_identifier()) for i in range(n_units)]))
-        self.units_type = torch.from_numpy(np.array(Tools.encode_string_array('neurons')))
         self.pos_x = torch.zeros(n_units, dtype=torch.float64)
         self.pos_y = torch.zeros(n_units, dtype=torch.float64)
         # self.pos_z = torch.zeros(n_units, dtype=torch.float64)
@@ -41,6 +57,24 @@ class NeuronsUnits():
         # self.containers_obj = torch.empty((n_units), dtype=torch.string)
         # self.nodes_obj = torch.empty((n_units), dtype=torch.string)
         self.links = torch.empty((n_units, max_num_links), dtype=torch.int32)
+        pass  # function
+
+    pass  # class
+
+
+@dataclass
+class NeuronsUnits_ForHumanRead():
+    """
+    定义专门用于人类阅读的神经单元之结构化数组的数据类型
+    """
+
+    uid: np.int64  # 单元之 ID（N）
+    units_type: np.dtype('S32')  # 单元之类型（N）
+
+    def __init__(self, n_units: int, max_num_links: int):
+        self.uid = np.arange(n_units, dtype=np.int64)
+        self.units_name = np.array([Tools.generate_unique_identifier() for i in range(n_units)], np.dtype('S32'))
+        self.units_type = torch.from_numpy(np.full(n_units, Settings.dict_written_type_of_Units['neuron']))
         pass  # function
 
     pass  # class
@@ -75,9 +109,12 @@ class NeuronsUnits():
 class OperationUnits():
     """
     定义运作单元（机器件）之结构化数组的数据（Numpy 版本）
+
+    注意，连接的数据类型为 int32，因为连接的值可能为负数。值为 -1 表示未连接。
     """
 
     def __init__(self, n_units: np.uint32, max_num_links: np.uint32, unit_type: np.uint8):
+        self.gid = np.arange(n_units)  # 单元之全局 ID
         self.uid = np.arange(n_units)  # 单元之 ID
         self.uid_name = np.array([Tools.generate_unique_identifier() for i in range(n_units)])  # 运作单元之名称
         self.units_type = np.full(n_units, unit_type)  # 运作单元之类型
@@ -94,43 +131,4 @@ class KeyData():
     """
     定义匹配钥匙对数据结构
     """
-    pass  # class
-
-
-class DefineUnits():
-
-    # units_dtype = np.dtype([
-    #     ('uid', np.uint64),  # 单元之 ID
-    #     ('units_type', 'S128'),  # 单元之类型
-    #     ('input_units', 'S128'),  # 单元之输入
-    #     ('output_units', 'S128'),  # 单元之输出
-    #     ('contents_obj', 'S128'),  # 单元之内容
-    #     ('containers_obj', 'S128'),  # 单元之容器
-    #     ('nodes_obj', 'S128'),  # 单元之节点
-    # ])
-
-    @classmethod
-    def define_operation_units(cls, n_units: int, mode: str = 'numpy'):
-        """
-        定义运作单元（机器件）之结构化数组的数据类型。
-        模式：numpy 或 torch
-
-        Args:
-            n_units (int): 单元数量
-            mode (str): 模式。默认值为 numpy
-
-        Returns:
-
-        """
-        # units = np.zeros(n_units, dtype=op_units_dtype)  # 创建一个结构化数组
-        # units['uid'] = np.arange(n_units)  # 初始化 uid
-
-        op_units_Uid = torch.arange(n_units, dtype=torch.int64)
-        op_units_UidString = torch.from_numpy(Tools.generate_unique_identifier())
-        op_units_UnitsType = torch.from_numpy(np.array(Tools.encode_string_array('hello world')))
-        # op_units_InputUnits = np.full(n_units, ' ', np.dtype('S128'))
-
-        return op_units_Uid, op_units_UidString, op_units_UnitsType
-        pass  # function
-
     pass  # class
