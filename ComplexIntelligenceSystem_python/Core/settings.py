@@ -19,8 +19,8 @@ class Settings():
         'goal': 1,  # 目标类型
         'control': 2,  # 控制类型
         'task': 3,  # 任务类型
-        'signal': 4,  # 信号类型
-        'state': 5,  # 状态类型
+        'state': 4,  # 状态类型
+        'sensor': 5,  # 感知类型
         'question': 6,  # 问题类型
         'language': 7,  # 语言类型
         'conception': 8,  # 概念类型
