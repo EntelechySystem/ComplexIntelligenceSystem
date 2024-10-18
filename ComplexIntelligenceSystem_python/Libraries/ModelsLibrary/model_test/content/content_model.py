@@ -5,67 +5,47 @@
 # from ComplexIntelligenceSystem_python.Core.define_units import define_neurons_units, define_op_units
 from ComplexIntelligenceSystem_python.Core.define_units import NeuronsUnits, OperationUnits
 from ComplexIntelligenceSystem_python.Core.tools import Tools
+from ComplexIntelligenceSystem_python.Core.settings import Settings
 import logging
 
 
 def content_model(para: dict, globals: dict):
-    logging.info("模型内容")
-
-    ## 设置项
-    # 神经元数量 = globals['神经元数量']
+    n_ne_units = globals['神经元总数量']
+    n_op_units_Control = int(globals['运作单元总数量'] / 8)
+    n_op_units_Container = int(globals['运作单元总数量'] / 8)
+    n_op_units_Goal = int(globals['运作单元总数量'] / 8)
+    n_op_units_Task = int(globals['运作单元总数量'] / 8)
+    n_op_units_Conception = int(globals['运作单元总数量'] / 8)
 
     ## 定义神经单元
-    ne_units = NeuronsUnits(globals['神经元总数量'], globals['单个神经元最大连接数'])
+    ne_units = NeuronsUnits(n_ne_units, globals['单个神经元最大连接数'])
 
     ## 打印初始化的神经元件
     print(ne_units)
 
-    # ## 初始化运作单元
-    # units = define_units(globals['运作单元总数量'])
-    #
-    # ## 打印初始化的运作单元
-    # print(units)
-    # # print(units.dtype)
-    # # print(units.shape)
-
     ## 初始化运作单元
 
     ### 初始化控制运作单元
-    op_units_Control = OperationUnits(globals['运作单元总数量'], globals['单个运作单元最大连接数'], "control")
+    op_units_Control = OperationUnits(n_op_units_Control, globals['单个运作单元最大连接数'], Settings.dict_written_type_of_Units['control'])
 
-    ### 初始化
+    ### 初始化容器运作单元
+    op_units_Container = OperationUnits(n_op_units_Container, globals['单个运作单元最大连接数'], Settings.dict_written_type_of_Units['container'])
 
-    ###
+    ### 初始化目标运作单元
+    op_units_Goal = OperationUnits(n_op_units_Goal, globals['单个运作单元最大连接数'], Settings.dict_written_type_of_Units['goal'])
 
-    # op_units_Uid, op_units_UidString, op_units_UnitsType = DefineUnits.define_operation_units(globals['运作单元总数量'])
+    ### 初始化任务运作单元
+    op_units_Task = OperationUnits(n_op_units_Task, globals['单个运作单元最大连接数'], Settings.dict_written_type_of_Units['task'])
+
+    ### 初始化概念运作单元
+    op_units_Conception = OperationUnits(n_op_units_Conception, globals['单个运作单元最大连接数'], Settings.dict_written_type_of_Units['conception'])
 
     ## 打印初始化的运作单元
-    print(op_units_Control)
+    logging.info("初始化的控制运作单元")
+    logging.info(op_units_Control)
+    logging.info("初始化的容器运作单元")
+    logging.info(op_units_Container)
     # print(Tools.decode_string_array(op_units_UnitsType))
     # print(op_units_InputUnits)
 
-    # # 初始化运作单元
-    # units = define_units(globals['运作单元总数量'])
-    #
-    # # 打印初始化的运作单元
-    # for unit in units:
-    #     print(f"UID: {unit.uid}, Input_Units: {unit.input_units}, "
-    #           f"Output_Units: {unit.output_units}, Units_Type: {unit.units_type}, Contents_Obj: {unit.contents_obj}, "
-    #           f"Containers_Obj: {unit.containers_obj}, Nodes_Obj: {unit.nodes_obj}")
 
-# import numpy as np
-# from numba import njit
-#
-# @njit
-# def define_units_with_adjacency(n_units: int, max_neighbors: int):
-#     op_units_Uid = np.arange(n_units)
-#     adjacency_matrix = np.full((n_units, max_neighbors), -1, dtype=np.int32)  # -1 表示没有邻接
-#
-#     # 为节点 0 添加邻接节点 1 和 2
-#     adjacency_matrix[0, 0] = 1
-#     adjacency_matrix[0, 1] = 2
-#
-#     return op_units_Uid, adjacency_matrix
-#
-# uids, adj_matrix = define_units_with_adjacency(5, 3)
-# print("邻接矩阵:\n", adj_matrix)
