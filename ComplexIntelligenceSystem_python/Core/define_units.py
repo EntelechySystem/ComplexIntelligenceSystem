@@ -14,13 +14,13 @@ from ComplexIntelligenceSystem_python.Core.settings import Settings
 
 class InitUnits():
     """
-    定义单元众
+    定义全局单元众 #TODO 未开发，暂时不使用
     """
 
     @classmethod
     def __init__(cls, init_dict, n_units: int, max_num_links: int, unit_type: int):
         guid = 0
-        while True:
+        while guid < n_units:
             pass  # while
         pass  # function
 
