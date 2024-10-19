@@ -8,17 +8,6 @@ from engine.tools.Tools import Tools
 
 
 def main():
-    # %% 设置工作目录。
-    # folderpath_settings=Tools.setup_working_directory()
-    if Path(sys.argv[0]).name == Path(__file__).name:
-        # 在控制台运行，切换到脚本所在的文件夹
-        folderpath = Path(__file__).resolve().parent
-        os.chdir(folderpath)
-    else:
-        # 通过其他脚本运行，执行特定的代码
-        list_args = Tools.decode_args([*sys.argv[1:]])
-        folderpath = list_args[0]
-        pass  # if
 
     folderpath_parameters = folderpath
 
@@ -220,4 +209,15 @@ def main():
 
 
 if __name__ == '__main__':
+    # %% 设置工作目录。
+    # folderpath_settings=Tools.setup_working_directory()
+    if Path(sys.argv[0]).name == Path(__file__).name:
+        # 在控制台运行，切换到脚本所在的文件夹
+        folderpath = Path(__file__).resolve().parent
+        os.chdir(folderpath)
+    else:
+        # 通过其他脚本运行，执行特定的代码
+        list_args = Tools.decode_args([*sys.argv[1:]])
+        folderpath = list_args[0]
+        pass  # if
     main()
