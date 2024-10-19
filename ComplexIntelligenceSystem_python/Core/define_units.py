@@ -1,132 +1,134 @@
 """
-定义单位众 Units 及其相关操作
+定义单元众 Units 及其相关操作
 """
+from dataclasses import dataclass
 
+import torch
 import numpy as np
+from numba import njit
+from sympy.physics.units.systems.si import units
 
-# from numba import njit
+from ComplexIntelligenceSystem_python.Core.tools import Tools
+from ComplexIntelligenceSystem_python.Core.settings import Settings
 
-N_UNITS = 1000  # 定义 Units 数量
 
-
-# @njit
-def define_units(n_units: int = N_UNITS):
+class InitUnits():
     """
-    定义一个单位之结构化数组的数据类型
-    Args:
-        n_units (int): 单位数量
-
-    Returns:
-        units (np.ndarray): 一个结构化数组
+    定义全局单元众 #TODO 未开发，暂时不使用
     """
-    units_dtype = np.dtype([
-        ('uid', np.uint64),  # 单位之 ID
-        ('pos_x', np.float64),  # 单位之物理空间之 X 坐标
-        ('pos_y', np.float64),  # 单位之物理空间之 Y 坐标
-        ('pos_z', np.float64),  # 单位之物理空间之 Z 坐标
-        ('input_units', np.float32),  # 单位之输入
-        ('output_units', np.float32),  # 单位之输出
-        ('units_type', 'S128'),  # 单位之类型
-        ('contents_obj', 'O'),  # 单位之内容
-        ('containers_obj', 'S128'),  # 单位之容器
-        ('nodes_obj', 'S128'),  # 单位之节点
-    ])
 
-    units = np.zeros(n_units, dtype=units_dtype)  # 创建一个结构化数组
-    units['uid'] = np.arange(n_units)  # 初始化 uid
+    @classmethod
+    def __init__(cls, init_dict, n_units: int, max_num_links: int, unit_type: int):
+        guid = 0
+        while guid < n_units:
+            pass  # while
+        pass  # function
 
-    return units
-    pass  # function
+    pass  # class
 
 
-# @njit
-def add_unit(units, uid: np.uint64):
+@dataclass
+class NeuronsUnits():
     """
-    添加一个单位
-    Args:
-        units (np.ndarray): 单位众
-        uid (np.uint64): 单位之 ID
+    定义神经单元之结构化数组的数据类型
     """
-    units_dtype = units.dtype
-    new_unit = np.zeros(1, dtype=units_dtype)
-    new_unit['uid'] = uid
-    return np.concatenate((units, new_unit))
-    pass  # function
+
+    uid: torch.Tensor  # 单元之 ID（N）
+    units_name: torch.Tensor  # 单元之名称（N×K）
+    units_type: torch.Tensor  # 单元之类型（N）
+    pos_x: torch.Tensor  # 单元之物理空间之 X 坐标
+    pos_y: torch.Tensor  # 单元之物理空间之 Y 坐标
+    # pos_z: torch.Tensor  # 单元之物理空间之 Z 坐标 #NOTE 如果需要启用再用
+    input_units: torch.Tensor  # 单元之输入
+    output_units: torch.Tensor  # 单元之输出
+    # contents_obj: torch.Tensor  # 单元之内容
+    # containers_obj: torch.Tensor  # 单元之容器
+    # nodes_obj: torch.Tensor  # 单元之节点
+    links: torch.Tensor  # 单元之连接
+
+    def __init__(self, n_units: int, max_num_links: int):
+        self.uid = torch.arange(n_units, dtype=torch.int64)
+        self.pos_x = torch.zeros(n_units, dtype=torch.float64)
+        self.pos_y = torch.zeros(n_units, dtype=torch.float64)
+        # self.pos_z = torch.zeros(n_units, dtype=torch.float64)
+        self.input_units = torch.empty((n_units), dtype=torch.float32)
+        self.output_units = torch.empty((n_units), dtype=torch.float32)
+        # self.contents_obj = torch.empty((n_units), dtype=torch.string)
+        # self.containers_obj = torch.empty((n_units), dtype=torch.string)
+        # self.nodes_obj = torch.empty((n_units), dtype=torch.string)
+        self.links = torch.empty((n_units, max_num_links), dtype=torch.int32)
+        pass  # function
+
+    pass  # class
 
 
-# @njit
-def delete_unit(units, uid: np.uint64):
+@dataclass
+class NeuronsUnits_ForHumanRead():
     """
-    删除一个单位
-
-    Args:
-        units (np.ndarray): 单位众
-        uid (np.uint64): 单位之 ID
-
-    Returns:
-
+    定义专门用于人类阅读的神经单元之结构化数组的数据类型
     """
-    return np.delete(units, uid)
-    pass  # function
+
+    uid: np.int64  # 单元之 ID（N）
+    units_type: np.dtype('S32')  # 单元之类型（N）
+
+    def __init__(self, n_units: int, max_num_links: int):
+        self.uid = np.arange(n_units, dtype=np.int64)
+        self.units_name = np.array([Tools.generate_unique_identifier() for i in range(n_units)], np.dtype('S32'))
+        self.units_type = torch.from_numpy(np.full(n_units, Settings.dict_written_type_of_Units['neuron']))
+        pass  # function
+
+    pass  # class
 
 
-# @njit
-def find_unit(units, uid):
-    """
-    查找一个单位
-
-    Args:
-        units (np.ndarray): 单位众
-        uid (np.uint64): 单位之 ID
-
-    Returns:
-
-    """
-    return np.where(units['uid'] == uid)[0]
-    pass  # function
-
-
-# @njit
-def move_uint(uid, pos_x, pos_y, pos_z, input_units, output_units, dx, dy, dz):
-    """
-    根据递增量更新一个单位之位置
-
-    Args:
-        uid ():
-        pos_x ():
-        pos_y ():
-        pos_z ():
-        input_units ():
-        output_units ():
-        dx ():
-        dy ():
-        dz ():
-
-    Returns:
-
-    """
-    pos_x += dx
-    pos_y += dy
-    pos_z += dz
-
+# @dataclass()
+# class OperationUnits(): # HACK 暂时不使用
+#     """
+#     定义运作单元（机器件）之结构化数组的数据（PyTorch 版本）
+#     """
 #
-# ## 定义单位众 Units 及其相关操作 #HACK torch 版本。未开发完。暂时不使用
-# @njit
-# def define_units(n_units: int = N_UNITS):
-#     # 定义输入单元
-#     uid = torch.arange(n_units, dtype=torch.int64)
-#     pos_x = torch.zeros(n_units, dtype=torch.float64)
-#     pos_y = torch.zeros(n_units, dtype=torch.float64)
-#     pos_z = torch.zeros(n_units, dtype=torch.float64)
-#     input_units = torch.empty(n_units, dtype=torch.float32)
-#     output_units = torch.empty(n_units, dtype=torch.float32)
-#     units_type = np.empty(n_units, dtype=np.dtype('S128'))
-#     contents_obj = np.empty(n_units, dtype=np.dtype('object'))
-#     containers_obj = np.empty(n_units, dtype=np.dtype('S128'))
-#     nodes_obj = np.empty(n_units, dtype=np.dtype('S128'))
+#     uid: torch.Tensor  # 运作单元之 ID
+#     units_name: torch.Tensor  # 运作单元之名称
+#     units_type: torch.Tensor  # 运作单元之类型
+#     input_units: torch.Tensor  # 运作单元之输入
+#     output_units: torch.Tensor  # 运作单元之输出
+#     links: torch.Tensor  # 运作单元之连接（N×M）
 #
-#     # 打包上述变量然后返回元组
-#     units = (pos_x, pos_y, pos_z, input_units, output_units, units_type, contents_obj, containers_obj, nodes_obj)
+#     def __init__(self, n_units: torch.int64, max_num_links: torch.int32, unit_type: torch.uint8):
+#         self.uid = torch.arange(n_units, dtype=torch.int64)
+#         self.units_name = torch.from_numpy(np.array([Tools.generate_unique_identifier() for i in range(n_units)]))
+#         self.units_type = torch.from_numpy(np.array(Tools.encode_string_array(unit_type)))
+#         self.input_units = torch.empty((n_units), dtype=torch.float32)
+#         self.output_units = torch.empty((n_units), dtype=torch.float32)
+#         self.links = torch.ones((n_units, max_num_links), dtype=torch.int32) * -1
+#         pass  # function
 #
-#     return units
-#
+#     pass  # class
+
+
+@dataclass()
+class OperationUnits():
+    """
+    定义运作单元（机器件）之结构化数组的数据（Numpy 版本）
+
+    注意，连接的数据类型为 int32，因为连接的值可能为负数。值为 -1 表示未连接。
+    """
+
+    def __init__(self, n_units: np.uint32, max_num_links: np.uint32, unit_type: np.uint8):
+        self.gid = np.arange(n_units)  # 单元之全局 ID
+        self.uid = np.arange(n_units)  # 单元之 ID
+        self.uid_name = np.array([Tools.generate_unique_identifier() for i in range(n_units)])  # 运作单元之名称
+        self.units_type = np.full(n_units, unit_type)  # 运作单元之类型
+        self.input_units = np.full(n_units, ' ', np.dtype('S128'))  # 运作单元之输入
+        self.output_units = np.full(n_units, ' ', np.dtype('S128'))  # 运作单元之输出
+        self.links = -np.ones((n_units, max_num_links), np.dtype(np.int32))  # 运作单元之连接（N×M）
+        pass  # function
+
+    pass  # class
+
+
+@dataclass()
+class KeyData():
+    """
+    定义匹配钥匙对数据结构
+    """
+    pass  # class
