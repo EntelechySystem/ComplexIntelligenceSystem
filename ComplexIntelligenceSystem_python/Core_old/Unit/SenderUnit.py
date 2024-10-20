@@ -1,6 +1,6 @@
 """
 @File   : SenderUnit.py
-@Author : Ethan Lin
+@Author : Yee Cube
 @Date   : 2022/07/06
 @Desc   : 发送件
 """

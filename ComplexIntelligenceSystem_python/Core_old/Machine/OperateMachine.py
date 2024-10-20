@@ -1,6 +1,6 @@
 """
 @File   : OperateMachine.py
-@Author : Ethan Lin
+@Author : Yee Cube
 @Date   : 2022/07/30
 @Desc   : 运作机
 """

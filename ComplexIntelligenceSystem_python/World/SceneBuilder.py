@@ -1,6 +1,6 @@
 """
 @File   : SceneBuilder.py
-@Author : Ethan Lin
+@Author : Yee Cube
 @Date   : 2022/09/20
 @Desc   : 大脑工厂构建工具，用于构建整个场景，暨工厂厂房。工厂厂房包括生产区、仓储区、进出口区、管理区等。
 """

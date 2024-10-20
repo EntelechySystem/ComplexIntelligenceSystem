@@ -1,6 +1,6 @@
 """
 @File   : Units.py
-@Author : Ethan Lin
+@Author : Yee Cube
 @Date   : 2022/07/12
 @Desc   : 所有基本元件集合
 """
@@ -11,7 +11,7 @@ from PyComplexIntelligenceSystem.Core.Content.Content import Content
 
 """
 @File   : ReadUnit.py
-@Author : Ethan Lin
+@Author : Yee Cube
 @Date   : 2022/07/05
 @Desc   : 读件
 """
@@ -52,7 +52,7 @@ class ReadUnit(BaseUnit):
 
 """
 @File   : WriteUnit.py
-@Author : Ethan Lin
+@Author : Yee Cube
 @Date   : 2022/07/06
 @Desc   : 写件
 """
@@ -84,7 +84,7 @@ class WriteUnit(BaseUnit):
 
 """
 @File   : ReceiverUnit.py
-@Author : Ethan Lin
+@Author : Yee Cube
 @Date   : 2022/07/06
 @Desc   : 收件
 """
@@ -147,7 +147,7 @@ class SenderUnit(BaseUnit):
 
 """
 @File   : ConnectUnit.py
-@Author : Ethan Lin
+@Author : Yee Cube
 @Date   : 2022/07/07
 @Desc   : 连件
 """
@@ -184,7 +184,7 @@ class ConnectUnit(BaseUnit):
 
 """
 @File   : CanvasUnit.py
-@Author : Ethan Lin
+@Author : Yee Cube
 @Date   : 2022/06/19
 @Desc   : 画布件
 """

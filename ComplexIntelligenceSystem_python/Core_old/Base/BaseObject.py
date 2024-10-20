@@ -1,6 +1,6 @@
 """
 @File   : BaseObject.py
-@Author : Ethan Lin
+@Author : Yee Cube
 @Date   : 2022/07/05
 @Desc   : 
 """

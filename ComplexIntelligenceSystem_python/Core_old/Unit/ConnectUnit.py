@@ -1,6 +1,6 @@
 """
 @File   : ConnectUnit.py
-@Author : Ethan Lin
+@Author : Yee Cube
 @Date   : 2022/07/07
 @Desc   : 连接件
 """
