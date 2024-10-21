@@ -5,8 +5,7 @@ from dataclasses import dataclass
 
 import torch
 import numpy as np
-from numba import njit
-from sympy.physics.units.systems.si import units
+# from numba import njit
 
 from ComplexIntelligenceSystem_python.Core.tools import Tools
 from ComplexIntelligenceSystem_python.Core.settings import Settings
