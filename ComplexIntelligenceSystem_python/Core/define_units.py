@@ -32,6 +32,7 @@ class NeuronsUnits():
     定义神经单元之结构化数组的数据类型
     """
 
+    gid: torch.Tensor  # 单元之全局 ID（N）
     uid: torch.Tensor  # 单元之 ID（N）
     units_name: torch.Tensor  # 单元之名称（N×K）
     units_type: torch.Tensor  # 单元之类型（N）
@@ -46,6 +47,7 @@ class NeuronsUnits():
     links: torch.Tensor  # 单元之连接
 
     def __init__(self, n_units: int, max_num_links: int):
+        self.gid = torch.arange(n_units, dtype=torch.int64)
         self.uid = torch.arange(n_units, dtype=torch.int64)
         self.pos_x = torch.zeros(n_units, dtype=torch.float64)
         self.pos_y = torch.zeros(n_units, dtype=torch.float64)
@@ -64,14 +66,17 @@ class NeuronsUnits():
 @dataclass
 class NeuronsUnits_ForHumanRead():
     """
-    定义专门用于人类阅读的神经单元之结构化数组的数据类型
+    定义专门用于人类观察可读的神经单元之结构化数组的数据类型
     """
 
-    uid: np.int64  # 单元之 ID（N）
-    units_type: np.dtype('S32')  # 单元之类型（N）
+    gid: torch.Tensor  # 单元之全局 ID（N）
+    # uid: torch.uint64  # 单元之 ID（N）
+    # units_type: np.dtype['S32']  # 单元之类型（N）
+    units_type: torch.uint8  # 单元之类型（N）
 
     def __init__(self, n_units: int, max_num_links: int):
-        self.uid = np.arange(n_units, dtype=np.int64)
+        self.gid = torch.arange(n_units, dtype=torch.int64)
+        # self.uid = torch.arange(n_units, dtype=torch.uint64)
         self.units_name = np.array([Tools.generate_unique_identifier() for i in range(n_units)], np.dtype('S32'))
         self.units_type = torch.from_numpy(np.full(n_units, Settings.dict_written_type_of_Units['neuron']))
         pass  # function
@@ -80,7 +85,7 @@ class NeuronsUnits_ForHumanRead():
 
 
 # @dataclass()
-# class OperationUnits(): # HACK 暂时不使用
+# class OperationUnits(): # HACK 暂时不继续
 #     """
 #     定义运作单元（机器件）之结构化数组的数据（PyTorch 版本）
 #     """
@@ -119,7 +124,23 @@ class OperationUnits():
         self.units_type = np.full(n_units, unit_type)  # 运作单元之类型
         self.input_units = np.full(n_units, ' ', np.dtype('S128'))  # 运作单元之输入
         self.output_units = np.full(n_units, ' ', np.dtype('S128'))  # 运作单元之输出
-        self.links = -np.ones((n_units, max_num_links), np.dtype(np.int32))  # 运作单元之连接（N×M）
+        self.links_softs = -np.ones((n_units, max_num_links), np.dtype(np.int32))  # 运作单元之软连接（N×M）
+        self.links_id = -np.ones((n_units, max_num_links), np.dtype(np.int32))  # 运作单元之 id 硬连接（N×M）
+        pass  # function
+
+
+@dataclass()
+class OperationUnitsForHuman():
+    """
+    定义专门用于人类观察可读的运作单元（机器件）之结构化数组的数据（Numpy 版本）
+
+    注意，连接的数据类型为 int32，因为连接的值可能为负数。值为 -1 表示未连接。
+    """
+
+    def __init__(self, n_units: np.uint32, max_num_links: np.uint32, unit_type: np.uint8):
+        self.gid = np.arange(n_units)
+        self.explaination = np.full(n_units, ' ', np.dtype('S128'))  # 运作单元之解释
+        self.notes = np.full(n_units, ' ', np.dtype('S4096'))  # 运作单元之备注
         pass  # function
 
     pass  # class
@@ -128,6 +149,6 @@ class OperationUnits():
 @dataclass()
 class KeyData():
     """
-    定义匹配钥匙对数据结构
+    #TODO 定义匹配钥匙对数据结构
     """
     pass  # class
