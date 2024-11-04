@@ -19,7 +19,7 @@ class Model:
 
             pass
 
-    def model_content(gb: dict):
+    def model_content(self, gb: dict):
         pass  # function
 
     pass  # class
@@ -74,8 +74,4 @@ class Model:
         ### 初始化概念运作单元
         op_units_Conception = OperationUnits(n_op_units_Conception, gb['单个运作单元最大连接数'], Settings.dict_written_type_of_Units['conception'])
 
-
         pass
-
-
-
