@@ -4,7 +4,7 @@
 
 
 # 输入信息功能
-def function_input_information(units, globals: dict, para: dict):
+def function_input_information(units, gb: dict, para: dict):
     """
     输入外界信息导入模型
 
@@ -12,7 +12,7 @@ def function_input_information(units, globals: dict, para: dict):
     pass  # function
 
 
-def schedule(units, globals: dict, para: dict):
+def schedule(units, gb: dict, para: dict):
     """
     调度单元功能
 
@@ -21,7 +21,7 @@ def schedule(units, globals: dict, para: dict):
 
 
 # 输出信息功能
-def function_output_information(units, globals: dict, para: dict):
+def function_output_information(units, gb: dict, para: dict):
     """
     输出动作信息到外界
 
@@ -30,7 +30,7 @@ def function_output_information(units, globals: dict, para: dict):
 
 
 # 模式匹配信息功能
-def function_pattern_matching(units, globals: dict, para: dict):
+def function_pattern_matching(units, gb: dict, para: dict):
     """
     模式匹配功能
 
@@ -38,7 +38,7 @@ def function_pattern_matching(units, globals: dict, para: dict):
     pass  # function
 
 
-def function_parsing_natural_language(units, globals: dict, para: dict):
+def function_parsing_natural_language(units, gb: dict, para: dict):
     """
     解析自然语言功能
 
@@ -47,7 +47,7 @@ def function_parsing_natural_language(units, globals: dict, para: dict):
     pass  # function
 
 
-def function_generate_natural_language(units, globals: dict, para: dict):
+def function_generate_natural_language(units, gb: dict, para: dict):
     """
     生成自然语言功能
 
@@ -56,7 +56,7 @@ def function_generate_natural_language(units, globals: dict, para: dict):
 
 
 # 逻辑推理功能
-def function_logic_reasoning(units, globals: dict, para: dict):
+def function_logic_reasoning(units, gb: dict, para: dict):
     """
     逻辑推理功能
 
