@@ -24,7 +24,7 @@ class Model:
         else:
             self.model_content(gb)
             pass  # if
-        model_function = ModelFunctions()
+        # model_function = ModelFunctions()
         pass  # function
 
     def model_content(self, gb: dict):
