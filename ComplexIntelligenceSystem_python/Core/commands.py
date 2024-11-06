@@ -6,7 +6,7 @@
 import numpy as np
 # import torch
 
-from engine.data.models.content import content_model
+from engine.libraries.models.content import content_model
 
 class Commands:
     # @njit
