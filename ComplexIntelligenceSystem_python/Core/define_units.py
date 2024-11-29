@@ -51,12 +51,12 @@ class NeuronsUnits():
         self.uid = torch.arange(n_units, dtype=torch.int64)
         self.pos_x = torch.zeros(n_units, dtype=torch.float64)
         self.pos_y = torch.zeros(n_units, dtype=torch.float64)
-        # self.pos_z = torch.zeros(n_units, dtype=torch.float64)
+        # self.pos_z = torch.zeros(N_units, dtype=torch.float64)
         self.input_units = torch.empty((n_units), dtype=torch.float32)
         self.output_units = torch.empty((n_units), dtype=torch.float32)
-        # self.contents_obj = torch.empty((n_units), dtype=torch.string)
-        # self.containers_obj = torch.empty((n_units), dtype=torch.string)
-        # self.nodes_obj = torch.empty((n_units), dtype=torch.string)
+        # self.contents_obj = torch.empty((N_units), dtype=torch.string)
+        # self.containers_obj = torch.empty((N_units), dtype=torch.string)
+        # self.nodes_obj = torch.empty((N_units), dtype=torch.string)
         self.links = torch.empty((n_units, max_num_links), dtype=torch.int32)
         pass  # function
 
@@ -76,7 +76,7 @@ class NeuronsUnits_ForHumanRead():
 
     def __init__(self, n_units: int, max_num_links: int):
         self.gid = torch.arange(n_units, dtype=torch.int64)
-        # self.uid = torch.arange(n_units, dtype=torch.uint64)
+        # self.uid = torch.arange(N_units, dtype=torch.uint64)
         self.units_name = np.array([Tools.generate_unique_identifier() for i in range(n_units)], np.dtype('S32'))
         self.units_type = torch.from_numpy(np.full(n_units, Settings.dict_written_type_of_Units['neuron']))
         pass  # function
@@ -97,13 +97,13 @@ class NeuronsUnits_ForHumanRead():
 #     output_units: torch.Tensor  # 运作单元之输出
 #     links: torch.Tensor  # 运作单元之连接（N×M）
 #
-#     def __init__(self, n_units: torch.int64, max_num_links: torch.int32, unit_type: torch.uint8):
-#         self.uid = torch.arange(n_units, dtype=torch.int64)
-#         self.units_name = torch.from_numpy(np.array([Tools.generate_unique_identifier() for i in range(n_units)]))
+#     def __init__(self, N_units: torch.int64, max_N_links: torch.int32, unit_type: torch.uint8):
+#         self.uid = torch.arange(N_units, dtype=torch.int64)
+#         self.units_name = torch.from_numpy(np.array([Tools.generate_unique_identifier() for i in range(N_units)]))
 #         self.units_type = torch.from_numpy(np.array(Tools.encode_string_array(unit_type)))
-#         self.input_units = torch.empty((n_units), dtype=torch.float32)
-#         self.output_units = torch.empty((n_units), dtype=torch.float32)
-#         self.links = torch.ones((n_units, max_num_links), dtype=torch.int32) * -1
+#         self.input_units = torch.empty((N_units), dtype=torch.float32)
+#         self.output_units = torch.empty((N_units), dtype=torch.float32)
+#         self.links = torch.ones((N_units, max_N_links), dtype=torch.int32) * -1
 #         pass  # function
 #
 #     pass  # class
