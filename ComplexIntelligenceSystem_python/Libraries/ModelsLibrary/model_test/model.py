@@ -112,6 +112,14 @@ class Model:
         logging.info("初始化的概念运作单元")
         Tools.print_units_values(self.op_units_Conception)
 
+
+        ## NOW 初始化模型单元结构
+
+        ### 总控制中心
+
+
+
+
         pass  # function
 
     def model_content(self, gb: dict):
