@@ -2,10 +2,11 @@
 模型
 """
 
+from engine.externals import np
 # from ComplexIntelligenceSystem_python.Core.define_units import define_neurons_units, define_op_units
-from engine.functions.ComplexIntelligenceSystem.Core.define_units import NeuronsUnits, NeuronsUnits_ForHumanRead, OperationUnits
-from engine.functions.ComplexIntelligenceSystem.Core.tools import Tools
-from engine.functions.ComplexIntelligenceSystem.Core.settings import Settings
+from ComplexIntelligenceSystem_python.Core.define_units import NeuronsUnits, NeuronsUnits_ForHumanRead, OperationUnits
+from ComplexIntelligenceSystem_python.Core.tools import Tools
+from ComplexIntelligenceSystem_python.Core.settings import Settings
 import logging
 
 
