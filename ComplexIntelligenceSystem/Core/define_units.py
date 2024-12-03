@@ -6,8 +6,8 @@ from dataclasses import dataclass
 import numpy as np
 # from numba import njit
 
-from ComplexIntelligenceSystem_python.Core.tools import Tools
-from ComplexIntelligenceSystem_python.Core.settings import Settings
+from ComplexIntelligenceSystem.Core.tools import Tools
+from ComplexIntelligenceSystem.Core.settings import Settings
 
 # class InitUnits():
 #     """

@@ -3,10 +3,10 @@
 """
 
 from engine.externals import np
-# from ComplexIntelligenceSystem_python.Core.define_units import define_neurons_units, define_op_units
-from ComplexIntelligenceSystem_python.Core.define_units import NeuronsUnits, NeuronsUnits_ForHumanRead, OperationUnits
-from ComplexIntelligenceSystem_python.Core.tools import Tools
-from ComplexIntelligenceSystem_python.Core.settings import Settings
+# from ComplexIntelligenceSystem.Core.define_units import define_neurons_units, define_op_units
+from ComplexIntelligenceSystem.Core.define_units import NeuronsUnits, NeuronsUnits_ForHumanRead, OperationUnits
+from ComplexIntelligenceSystem.Core.tools import Tools
+from ComplexIntelligenceSystem.Core.settings import Settings
 import logging
 
 
@@ -39,20 +39,20 @@ class Model:
         ## 初始化单元众
 
         ### 定义神经元
-        self.N_ne_units = gb['神经元总数量']
-        self.N_op_units_Control = int(gb['运作单元总数量'] / 8)
-        self.N_op_units_Container = int(gb['运作单元总数量'] / 8)
-        self.N_op_units_Goal = int(gb['运作单元总数量'] / 8)
-        self.N_op_units_Task = int(gb['运作单元总数量'] / 8)
-        self.N_op_units_Conception = int(gb['运作单元总数量'] / 2)
+        self.N_ne_units = gb['神经元预留位总数量']
+        self.N_op_units_Control = int(gb['运作单元预留位总数量'] / 8)
+        self.N_op_units_Container = int(gb['运作单元预留位总数量'] / 8)
+        self.N_op_units_Goal = int(gb['运作单元预留位总数量'] / 8)
+        self.N_op_units_Task = int(gb['运作单元预留位总数量'] / 8)
+        self.N_op_units_Conception = int(gb['运作单元预留位总数量'] / 2)
 
         ## 初始化单元众
 
         ### 定义神经元
-        self.ne_units = NeuronsUnits(self.N_ne_units, gb['单个神经元最大连接数'])
+        self.ne_units = NeuronsUnits(self.N_ne_units, gb['单个神经元连接预留位总数量'])
 
         ### 定义用于人类阅读的神经元数据
-        self.ne_units_human = NeuronsUnits_ForHumanRead(self.N_ne_units, gb['单个神经元最大连接数'])
+        self.ne_units_human = NeuronsUnits_ForHumanRead(self.N_ne_units, gb['单个神经元连接预留位总数量'])
 
         # 打印初始化的神经元
         logging.info("初始化的神经元")
@@ -64,7 +64,7 @@ class Model:
         ### 初始化控制运作单元
         self.op_units_Control = OperationUnits(
             self.N_op_units_Control,
-            gb['单个运作单元最大连接数'],
+            gb['单个运作单元连接预留位总数量'],
             Settings.dict_written_type_of_Units['control'],
             gb['起始gid']
         )
@@ -75,7 +75,7 @@ class Model:
         gb['起始gid'] += self.N_op_units_Control
         self.op_units_Container = OperationUnits(
             self.N_op_units_Container,
-            gb['单个运作单元最大连接数'],
+            gb['单个运作单元连接预留位总数量'],
             Settings.dict_written_type_of_Units['container'],
             gb['起始gid']
         )
@@ -84,7 +84,7 @@ class Model:
         gb['起始gid'] += self.N_op_units_Container
         self.op_units_Goal = OperationUnits(
             self.N_op_units_Goal,
-            gb['单个运作单元最大连接数'],
+            gb['单个运作单元连接预留位总数量'],
             Settings.dict_written_type_of_Units['goal'],
             gb['起始gid']
         )
@@ -95,7 +95,7 @@ class Model:
         gb['起始gid'] += self.N_op_units_Goal
         self.op_units_Task = OperationUnits(
             self.N_op_units_Task,
-            gb['单个运作单元最大连接数'],
+            gb['单个运作单元连接预留位总数量'],
             Settings.dict_written_type_of_Units['task'],
             gb['起始gid']
         )
@@ -106,7 +106,7 @@ class Model:
         gb['起始gid'] += self.N_op_units_Task
         self.op_units_Conception = OperationUnits(
             self.N_op_units_Conception,
-            gb['单个运作单元最大连接数'],
+            gb['单个运作单元连接预留位总数量'],
             Settings.dict_written_type_of_Units['conception'],
             gb['起始gid']
         )
