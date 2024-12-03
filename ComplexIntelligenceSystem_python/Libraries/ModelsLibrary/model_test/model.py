@@ -113,13 +113,44 @@ class Model:
         logging.info("初始化的概念运作单元")
         Tools.print_units_values(self.op_units_Conception)
 
+        ## 初始化模型单元结构
 
-        ## NOW 初始化模型单元结构
+        #### 总控制中心
 
-        ### 总控制中心
+        # 选取 64 个控制单元做为总控制中心（一级控制中心）。这些控制单元之间相互连接，形成一个全连接网络。
 
+        N_units_controlCenter = 64  # 一级控制中心之控制单元数量
+        ids_point = 0  # 用于记录当前要开始选取的 ID 偏移值
+        ids_from = np.arange(N_units_controlCenter)
+        ids_level1Center = ids_from.copy()
+        self.op_units_Control.links_id(ids_from, ids_from)  # 同一个控制中心内部的控制单元之间相互连接，形成一个全连接网络。
+        ids_point += N_units_controlCenter
 
+        #### 分级控制中心
 
+        # 再选取 64 个控制单元做为2级控制中心。这些控制单元之间相互连接，形成一个全连接网络。二级控制中心
+        N_controlUnits_level2Center = 64
+        N_level2Center = 64
+        for i in range(N_level2Center):
+            ids_from = np.arange(N_units_controlCenter, N_units_controlCenter + N_controlUnits_level2Center)
+            ids_level2Center = ids_from.copy()
+            ids_to = np.arange(N_units_controlCenter, N_units_controlCenter + N_controlUnits_level2Center)
+            self.op_units_Control.links_id(i, ids_from)
+            self.op_units_Control.links_id(ids_from, ids_to)
+            ids_to = ids_level1Center
+            self.op_units_Control.links_id(ids_from, ids_to)  # 同一级的控制中心之间暂时不连接，但是与上级控制中心连接
+            ids_point += N_controlUnits_level2Center
+
+            # 选取 64 个控制单元做为3级控制中心。这些控制单元之间相互连接，形成一个全连接网络。三级控制中心
+            N_controlUnits_level3Center = 64
+            N_level3Center = 64
+            for i in range(N_level3Center):
+                ids_from = np.arange(ids_point, ids_point + N_controlUnits_level3Center)
+                ids_to = np.arange(ids_point, ids_point + N_controlUnits_level3Center)
+                self.op_units_Control.links_id(ids_from, ids_to)  # 同一个控制中心内部的控制单元之间相互连接，形成一个全连接网络。
+                ids_to = ids_level2Center
+                self.op_units_Control.links_id(ids_from, ids_to)  # 同一级的控制中心之间暂时不连接，但是与上级控制中心连接
+                ids_point += N_controlUnits_level3Center
 
         pass  # function
 
